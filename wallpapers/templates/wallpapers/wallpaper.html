@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{wallpaper.title}}{% endblock title %}
+
+{% block content %}
+<div>
+<div>
+<a href="{%url 'start_page' %}">Main Page</a>
+<div>
+    <img style="max-width:60%; max-height:60%;" src="{{wallpaper.image.url}}" >
+
+    <p>{{wallpaper.title}}</p>
+    <a href="{{wallpaper.image.url}}" download>Download</a>
+</div>
+</div>
+</div>
+{% endblock content %}
