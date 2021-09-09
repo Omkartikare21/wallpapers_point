@@ -2,11 +2,15 @@
 
 {% block content %}
 
+
+
 <div>
 Categories
 </div>
 
 <div>
+
+
   <ul>
     <li>
       <a href="{%url 'start_page' %}">All</a>
@@ -18,6 +22,8 @@ Categories
     {% endfor %}
 
   </ul>
+
+ 
 </div>
 
 {% for wallpaper in wallpapers %}
@@ -33,5 +39,7 @@ Categories
   <h3>No Wallpapers Sorry😥</h3>
 </div>
 {% endfor %}
+
+
 
 {% endblock content %}
