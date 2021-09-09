@@ -127,7 +127,7 @@ STATICFILES_DIR = [
     BASE_DIR / 'static'
 ]
 
-MEDIA_ROOT = BASE_DIR / 'static/wallpapers'
+MEDIA_ROOT = BASE_DIR / 'uploads/wallpapers'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
