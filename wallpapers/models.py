@@ -25,3 +25,12 @@ class Wallpapers(models.Model):
 
     class Meta:
         verbose_name_plural = "Wallpapers"
+
+
+class Comments(models.Model):
+    user_name = models.CharField(max_length=80)
+    user_email = models.EmailField()
+    text = models.TextField(max_length=400)
+
+    class Meta:
+        verbose_name_plural = "Comments"

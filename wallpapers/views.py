@@ -1,9 +1,12 @@
+from django.http.response import HttpResponseRedirect
+from wallpapers.forms import CommentForm
 from django.shortcuts import render
 from .models import Wallpapers, Category
-# Add Comment later
+from django.urls import reverse
 
 
 def index(request):
+    comment_form = CommentForm(request.POST)
     category = request.GET.get('category')
     if category == None:
         wallpapers = Wallpapers.objects.all()
@@ -11,7 +14,13 @@ def index(request):
         wallpapers = Wallpapers.objects.filter(category__name=category)
 
     categories = Category.objects.all()
-    context = {"categories": categories, "wallpapers": wallpapers}
+
+    if comment_form.is_valid():
+        comment = comment_form.save()
+        return HttpResponseRedirect(reverse("start_page"))
+
+    context = {"categories": categories, "wallpapers": wallpapers,
+               "comment_form": CommentForm()}
     return render(request, "wallpapers/index.html", context)
 
 

@@ -3,15 +3,24 @@
 {% block title %}{{wallpaper.title}}{% endblock title %}
 
 {% block content %}
-<div>
-<div>
-<a href="{%url 'start_page' %}">Main Page</a>
-<div>
-    <img style="max-width:60%; max-height:60%;" src="{{wallpaper.image.url}}" >
+
+<body class="m-5" style="background-color:#fdd1d8;">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col ">
+<a href="{% url "start_page" %}" class="btn btn-dark my-3 ">Home</a>
+    <div style="height: 50%; ">
+    <img style="max-width: 90%; max-height: 90%; " src="{{wallpaper.image.url}}">
 
     <p>{{wallpaper.title}}</p>
-    <a href="{{wallpaper.image.url}}" download>Download</a>
+    <a href="{{wallpaper.image.url}}" class="btn btn-light" download>Download</a>
+    </div>
+
+
 </div>
 </div>
 </div>
+    
+</body>
+
 {% endblock content %}
