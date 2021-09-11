@@ -15,7 +15,7 @@
 {% block content %}
 
 
-<body class="m-5">
+<body class="m-2">
     <div class="container">
         <div class="row">
           <div class="col-md-3">
@@ -27,11 +27,11 @@ Categories
 
   <ul class="list-group list-group-flush">
     <li class="list-group-item">
-      <a href="{% url 'start_page' %}">All</a>
+      <a href="{% url 'start_page' %}" style="text-decoration:none; color:black;">All</a>
     </li>
     {% for category in categories %}
     <li class="list-group-item">
-      <a href="{% url 'start_page' %}?category={{category.name}}">{{category.name}}</a>
+      <a style="text-decoration:none; color:#d6909c;" href="{% url 'start_page' %}?category={{category.name}}">{{category.name}}</a>
     </li>
     {% endfor %}
 
