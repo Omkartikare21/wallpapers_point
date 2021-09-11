@@ -51,6 +51,9 @@ Categories
 <img class="image-thumbnail" src="{{wallpaper.image.url}}" alt="{{wallpaper.title}}">
 <div class="card-body">
   <small>Category: {{wallpaper.category.name}}</small>
+  <div>
+  <small>Artist: {{wallpaper.author}}</small>
+  </div>
 </div>
 <a href="{% url "detail" wallpaper.slug %}" class="btn btn-outline-dark btn-sm m-1">View</a>
 </div>
