@@ -4,16 +4,19 @@
 
 {% block content %}
 
-<body class="m-5" style="background-color:#fdd1d8;">
+<body class="m-5" style="background-color:#f1c3e0;">
 <div class="container">
 <div class="row justify-content-center">
-<div class="col ">
+<div class="col" style="text-align:center;">
 <a href="{% url "start_page" %}" class="btn btn-dark my-3 ">Home</a>
     <div style="height: 50%; ">
     <img style="max-width: 90%; max-height: 90%; " src="{{wallpaper.image.url}}">
 
-    <p>{{wallpaper.title}}</p>
-    <a href="{{wallpaper.image.url}}" class="btn btn-light" download>Download</a>
+    <p style="font-family: 'Azeret Mono', monospace;">{{wallpaper.title}}</p>
+    <div>
+    <small style="font-family: 'Azeret Mono', monospace;">Artist: {{wallpaper.author}}</small>
+    </div> 
+    <a href="{{wallpaper.image.url}}" class="btn btn-outline-success" download >Download</a>
     </div>
 
 
