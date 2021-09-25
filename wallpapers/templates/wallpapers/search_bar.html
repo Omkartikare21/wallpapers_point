@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+ <div class="col-md-9">
+          <div class="row" style="margin-left:3rem">
+
+{% for wallpaper in result %}
+<div class="col-md-4" >
+
+<div class="card my-2">
+<img class="image-thumbnail" src="{{wallpaper.image.url}}" alt="{{wallpaper.title}}">
+<div class="card-body">
+  <small>Category: {{wallpaper.category.name}}</small>
+  <div>
+  <small>Artist: {{wallpaper.author}}</small>
+  </div>
+</div>
+<a href="{% url "detail" wallpaper.slug %}" class="btn btn-outline-dark btn-sm m-1">View</a>
+</div>
+</div>
+{% empty %}
+  <h3>No Wallpapers Sorry😥</h3>
+  
+{% endfor %}
+</div>
+</div>
+
+{% endblock content %}

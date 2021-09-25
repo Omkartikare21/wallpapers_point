@@ -11,14 +11,22 @@ class Category(models.Model):
         verbose_name_plural = "Category"
 
 
+class Tag(models.Model):
+    caption = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.caption
+
+
 class Wallpapers(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True, blank=True)
-    title = models.CharField(max_length=25)
+    title = models.CharField(max_length=100)
     image = models.ImageField(upload_to="wallpapers", null=True)
     date = models.DateField(auto_now=True)
     slug = models.SlugField(unique=True, db_index=True)
     author = models.CharField(max_length=40)
+    tags = models.ManyToManyField(Tag)
 
     def __str__(self):
         return f"{self.title}"
@@ -31,6 +39,9 @@ class Comments(models.Model):
     user_name = models.CharField(max_length=80)
     user_email = models.EmailField()
     text = models.TextField(max_length=400)
+
+    def __str__(self):
+        return f"{self.user_name} {self.text}"
 
     class Meta:
         verbose_name_plural = "Comments"

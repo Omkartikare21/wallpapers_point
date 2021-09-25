@@ -2,23 +2,34 @@
 
 {% block title %}{{wallpaper.title}}{% endblock title %}
 
+{% block script %}
+function clicked(){
+  alert("Thank you for downloading from our website")
+}
+{% endblock script %}
+
 {% block content %}
 
-<body class="m-5" style="background-color:#ffcdd5;">
+<body class="m-10" style="background-color:#fff;">
 <div class="container">
 <div class="row justify-content-center">
 <div class="col" style="text-align:center;">
 <a href="{% url "start_page" %}" class="btn btn-dark my-3 ">Home</a>
     <div style="height: 50%; ">
     <img style="max-width: 90%; max-height: 90%; " src="{{wallpaper.image.url}}">
-
+    <div class="mt-2">
+    <div class="mb-2">
+        {% for tag in tags %}
+        <p class="btn btn-light">{{tag.caption}}</p>
+        {% endfor %}
+        </div>
+    </div>
     <p style="font-family: 'Azeret Mono', monospace;">{{wallpaper.title}}</p>
     <div>
     <small style="font-family: 'Azeret Mono', monospace;">Artist: {{wallpaper.author}}</small>
     </div> 
-    <a href="{{wallpaper.image.url}}" class="btn btn-outline-success" download >Download</a>
+    <a href="{{wallpaper.image.url}}" class="btn btn-outline-success" download onclick="clicked()" >Download</a>
     </div>
-
 
 </div>
 </div>

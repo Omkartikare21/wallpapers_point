@@ -15,9 +15,9 @@
 {% block content %}
 
 
-<body class="m-2">
-    <div class="container">
-        <div class="row">
+<body class="m-2 ">
+    <div class="container m-0 my-4 ">
+        <div class="row ">
           <div class="col-md-3">
           
           <div class="card"> 
@@ -31,17 +31,14 @@ Categories
     </li>
     {% for category in categories %}
     <li class="list-group-item">
-      <a style="text-decoration:none; color:#d6909c;" href="{% url 'start_page' %}?category={{category.name}}">{{category.name}}</a>
+      <a style="text-decoration:none; color:black;" href="{% url 'start_page' %}?category={{category.name}}">{{category.name}}</a>
     </li>
     {% endfor %}
-
   </ul>
-
- 
 </div>
 
 </div>
-          <div class="col-md-9">
+          <div class="col-md-9 ">
           <div class="row">
 
 {% for wallpaper in wallpapers %}
@@ -64,10 +61,26 @@ Categories
 
 </div>
 </div>
-{% comment %} </div>
-</div> {% endcomment %}
 </body>
 
-{% comment %} {% include "wallpapers/includes/comment.html" %} {% endcomment %}
+{% if comment_form.errors %}
+    <div id ="alert">
+        <h2>Saving error</h2>
+        <p>please check the comment</p>
+        <a href="#comment-form">Fix</a>
+    </div>
+{% endif %}
 
+<section id="comm" >
+  <ul>
+  {% for comment in comments %}
+    <li>
+        <h2>{{comment.user_name}}</h2>
+        <p>{{comment.text|linebreaks}}</p>
+    </li>
+  {% endfor %}
+  </ul>
+</section>
+
+{% include "wallpapers/includes/comment.html" %} 
 {% endblock content %}
