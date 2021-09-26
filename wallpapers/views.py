@@ -46,13 +46,13 @@ class start(View):
 #     categories = Category.objects.all()
 
 #     if comment_form.is_valid():
-#         comment = comment_form.save()
 #         return HttpResponseRedirect(reverse("start_page"))
 
 #     context = {"categories": categories, "wallpapers": wallpapers,
 #                "comment_form": CommentForm()}
 #     return render(request, "wallpapers/index.html", context)
 
+#         comment = comment_form.save()
 
 def wallpapers(request, slug):
     wallpapers = Wallpapers.objects.get(slug=slug)
@@ -70,3 +70,11 @@ def search_bar(request):
         "result": result
     }
     return render(request, "wallpapers/search_bar.html", context)
+
+
+class HomePage(View):
+
+    def get(self, request):
+        new = Wallpapers.objects.filter(
+            category__name__icontains="3D")[:1]
+        return render(request, "wallpapers/homepage.html", {"new": new})

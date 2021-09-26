@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>this is a test</h2>
+    <section id="picture">
+        <div class="p1">
+        {% for n in new %}
+            <a href="#">
+            <img src="{{n.image.url}}" alt="{{n.title}}">
+            </a>
+            {%endfor%}
+        </div>
+            <div class="p2">
+            {% for n in new %}
+            <a href="#">
+            <img src="{{n.image.url}}" alt="{{n.title}}">
+            </a>
+            {%endfor%}
+        </div>
+    </section>
+
+<section id="picture1">
+    <div id="picture">
+        <div class="p3">
+            {% for n in new %}
+            <a href="#">
+            <img src="{{n.image.url}}" alt="{{n.title}}">
+            </a>
+            {%endfor%}
+        </div>
+
+        <div class="p4">
+            {% for n in new %}
+            <a href="#">
+            <img src="{{n.image.url}}" alt="{{n.title}}">
+            </a>
+            {%endfor%}
+        </div>
+    </div>
+
+    <div id="picture2">
+        <div class="p5">
+            {% for n in new %}
+            <a href="#">
+            <img src="{{n.image.url}}" alt="{{n.title}}">
+            </a>
+            {%endfor%}
+        </div>
+        <div class="p6">
+            {% for n in new %}
+            <a href="#">
+            <img src="{{n.image.url}}" alt="{{n.title}}">
+            </a>
+            {%endfor%}
+        </div>
+    </div>
+</section>
+<section>
+    <div class="p7">
+        {% for n in new %}
+            <a href="#">
+            <img src="{{n.image.url}}" alt="{{n.title}}">
+            </a>
+            {%endfor%}
+    </div>
+</section>
+
+<section id="picture3">
+    <div class="p8">
+        {% for n in new %}
+            <a href="#">
+            <img src="{{n.image.url}}" alt="{{n.title}}">
+            </a>
+            {%endfor%}
+    </div>
+    <div class="p9">
+        {% for n in new %}
+            <a href="#">
+            <img src="{{n.image.url}}" alt="{{n.title}}">
+            </a>
+            {%endfor%}
+    </div>
+    <div class="p10">
+        {% for n in new %}
+            <a href="#">
+            <img src="{{n.image.url}}" alt="{{n.title}}">
+            </a>
+            {%endfor%}
+    </div>
+</section>
+
+{% endblock content %}
