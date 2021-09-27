@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<head>
+  {% block title %}All Categories{% endblock title %}
+
+  <style>
+    .image-thumbnail{
+        height: 200px;
+        object-fit:cover;
+    }
+  </style>
+</head>
+
+{% block content %}
+
+<body class="m-2 ">
+  <div class="container m-0 my-4 ">
+      <div class="row ">
+        <div class="col-md-3">
+          
+          <div class="card"> 
+          <div class="card-header">
+            Categories
+          </div>
+
+    <ul class="list-group list-group-flush">
+
+      <li class="list-group-item">
+        <a href="{% url 'start_page' %}" style="text-decoration:none; color:black;">All</a>
+      </li>
+
+      {% for category in categories %}
+
+      <li class="list-group-item">
+        <a style="text-decoration:none; color:black;" href="{% url 'start_page' %}?category={{category.name}}">{{category.name}}</a>
+      </li>
+
+      {% endfor %}
+
+    </ul>
+
+  </div>
+
+  </div>
+  <div class="col-md-9 ">
+  <div class="row">
+
+  {% for wallpaper in wallpapers %}
+  <div class="col-md-4">
+
+    <div class="card my-2">
+      <img class="image-thumbnail" src="{{wallpaper.image.url}}" alt="{{wallpaper.title}}">
+        <div class="card-body">
+          <small>Category: {{wallpaper.category.name}}</small>
+            <div>
+              <small>Artist: {{wallpaper.author}}</small>
+            </div>
+          </div>
+          <a href="{% url "detail" wallpaper.slug %}" class="btn btn-outline-dark btn-sm m-1">View</a>
+        </div>
+      </div>
+      {% empty %}
+        <h3>No Wallpapers Sorry😥</h3>
+      {% endfor %}
+
+    </div>
+  </div>
+</body>
+
+{% if comment_form.errors %}
+    <div id ="alert">
+        <h2>Saving error</h2>
+        <p>please check the comment</p>
+        <a href="#comment-form">Fix</a>
+    </div>
+{% endif %}
+
+<section id="comm" >
+  <ul>
+    {% for comment in comments %}
+      <li>
+        <h2>{{comment.user_name}}</h2>
+        <p>{{comment.text|linebreaks}}</p>
+      </li>
+  {% endfor %}
+  </ul>
+</section>
+
+{% include "wallpapers/includes/comment.html" %} 
+{% endblock content %}

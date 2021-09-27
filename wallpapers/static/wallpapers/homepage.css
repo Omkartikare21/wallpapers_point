@@ -1,78 +1,121 @@
-#picture{
-    color: red;
-    background-color: lightgreen;
+#picture{    
     height: 300px;
     display: flex;
 }
 
 #picture2{
-    background-color: blue  ;
     max-width: 70%;
     width: 100%;
     display: flex;
 }
 
-#picture3{
-    /* background-color: #570e45; */
+
+#picture4{
     width: 100%;
     display: flex;
+    justify-content: center;
 }
 
 .p1{
+    border-radius: 10px;
+    margin: 1.5rem;
+    width: 50%;
+    position: relative;
+}
+
+
+.p1:hover .p-category{
+    opacity: 1;
+}
+
+
+
+.p2{
+    position: relative;
+    margin: 1.5rem;
+    margin-left: 0;
     width: 50%;
 }
 
-.p2{
-    width: 50%;
+.p2:hover .p-category,
+.p3:hover .p-category,
+.p4:hover .p-category,
+.p5:hover .p-category,
+.p6:hover .p-category,
+.p7:hover .p-category,
+.p8:hover .p-category,
+.p9:hover .p-category,
+.p10:hover .p-category{
+    opacity: 1;
 }
 
 .p3{
-    background-color: maroon;
+    position: relative;
+    padding: 0 1rem ;
+    margin: 1.5rem;
+    margin-left: 1.9rem;
     width: 70%;
 }
 
 .p4{
-    background-color: mediumvioletred;
+    position: relative;
+    margin: 1.5rem;
     width: 30%;
     height:187%;
 }
 
 .p5{
-    background-color: pink;
+    position: relative;
+    margin: 1.5rem;
     width: 50%;
     height: 260px;
 }
 
 .p6{
-    background-color: black;
+    position: relative;
+    margin: 1.5rem;
     width: 50%;
     height: 260px;
 }
 
 .p7{
-    background-color: crimson;
+    position: relative;
+    max-width: 90%;
     width: 100%;
     height: 400px;
+    margin-left: 3.5rem;
 }
 
 .p8{
-    background-color: darkorange;
+    position: relative;
+    margin: 1.5rem;
     width: 28%;
     height: 600px;
 }
 
 .p9{
-    background-color: darkorchid;
+    position: relative;
+    margin: 1.5rem;
     width: 28%;
     height: 600px;
 }
 
 .p10{
-    background-color: #3b0909;
+    position: relative;
+    margin: 1.5rem;
     width: 28%;
     height: 600px;
 }
 
+.p-category{
+    opacity: 0;
+    position: absolute;
+    transition: all 0.5s ease-in;
+    font-size: 2rem;
+    bottom: 0;
+    right: 5%;
+    color: white;
+}
 
 .p1 img,
 .p2 img,
@@ -87,4 +130,6 @@
     object-fit: cover;
     width: 100%;
     height: 100%;
+    border-radius: 6px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
 }

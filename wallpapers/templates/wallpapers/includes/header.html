@@ -10,16 +10,21 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
     <ul class="navbar-nav mr-auto">
+
       <li class="nav-item active">
-        <a class="nav-link fw-bold" style="font-size:24px" href="{% url 'start_page' %}">Home</a>
+        <a class="nav-link fw-bold" style="font-size:24px" href="{% url 'home' %}">Home</a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link fw-bold" style="font-size:24px" href="mailto:omkartikare55@gmail.com">Mail Us </a>
       </li>
+
     </ul>
     <form class="form-inline my-2 my-lg-0" style="margin-left:630px; display:flex;" method='get' action='/search'>
+
       <input class="form-control mr-sm-2" name="search" id="search" type="search" placeholder="Search" aria-label="Search">
-       <button class="btn btn-outline-success my-2 my-sm-0" style="margin-left:8px" type="submit">Search</button>
+      <button class="btn btn-outline-success my-2 my-sm-0" style="margin-left:8px" type="submit">Search</button>
+      
     </form>
 
   </div>

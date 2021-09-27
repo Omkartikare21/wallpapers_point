@@ -1,18 +1,18 @@
 {% block content %} 
 
 <section class="all_sec" >
-        <h2>Comments</h2>
-    <form action="{% url 'start_page' %}" method="POST">
-    {% csrf_token %}
+    <h2>Comments</h2>
+        <form action="{% url 'start_page' %}" method="POST">
+        {% csrf_token %}
         {% for form_fields in comment_form %}
-        <div class=" smtg {% if form_fields.errors %}invalid{% endif %} "> 
-            {{form_fields.label_tag}}
-            {{form_fields}}
-            {{form_fields.errors}}
-        </div>
+            <div class=" smtg {% if form_fields.errors %}invalid{% endif %} "> 
+                {{form_fields.label_tag}}
+                {{form_fields}}
+                {{form_fields.errors}}
+            </div>
         {% endfor %}
         <div id="bon">
-        <button class="btn btn-dark my-3">Send Comment🥰</button>
+            <button class="btn btn-dark my-3">Send Comment🥰</button>
         </div>
     </form>
 </section>
