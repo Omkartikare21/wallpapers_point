@@ -1,10 +1,50 @@
 {% extends 'base.html' %}
 
-{% block title %}
+{% block title %}{{wallpaper.title}}{% endblock title %}
 
-  {{wallpaper.title}}
+{% block content %}
 
-{% endblock title %}
+<section>
+    <div class="main-section-container">
+      <div class="main-wall-content">
+        <h4>{{wallpaper.title}}</h4>
+        
+        <img src="{{wallpaper.image.url}}">
+        <h6>Artist: {{wallpaper.author}}</h6>
+
+            <div class="main-wall-tags">
+                {% for tag in tags %}
+                    <button><a href="{% url 'tags' %}?tag={{tag.caption}}">{{ tag.caption }}</a></button>
+                {% endfor %}
+            </div>
+
+            <button class="bttn"><a href="{{wallpaper.image.url}}" class="bttn-link" download onclick="clicked()" >Download</a></button>
+      </div>
+
+        <div class="side-wall-content">
+            <h4>Top Pick</h4>
+            <div class="side-content">
+                {% for swI in swImg %}
+                    <a href="{% url "detail" swI.slug %}"><img src="{{swI.image.url}}" alt=""></a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="sub-main-content">
+        <h3>Related Images</h3>
+        <div class="sub-content">
+            {% for swI in swImgLoop %}
+                <div class="content">
+                <a href="{% url 'detail' swI.slug %}"><img src="{{swI.image.url}}" alt=""></a></div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+            
+{% endblock content %}
 
 
 {% block script %}
@@ -12,47 +52,3 @@
     alert("Thank you for downloading from our website")
   }
 {% endblock script %}
-
-
-{% block content %}
-
-  <body class="m-10" style="background-color:#fff;">
-  
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col" style="text-align:center;">
-
-          <a href="{% url "home" %}" class="btn btn-dark my-3 ">Home</a>
-
-            <div style="height: 50%; ">
-              <img style="max-width: 90%; max-height: 90%; " src="{{wallpaper.image.url}}">
-
-                <div class="mt-2">
-                  <div class="mb-2">
-
-                    {% for tag in tags %}
-                      <p class="btn btn-light">{{tag.caption}}</p>
-                    {% endfor %}
-                    
-                  </div>
-                </div>
-
-                <p style="font-family: 'Azeret Mono', monospace;">{{wallpaper.title}}</p>
-
-            <div>
-
-              <small style="font-family: 'Azeret Mono', monospace;">Artist: {{wallpaper.author}}</small>
-
-            </div> 
-
-            <a href="{{wallpaper.image.url}}" class="btn btn-outline-success" download onclick="clicked()" >Download</a>
-
-            </div>
-
-        </div>
-      </div>
-    </div>
-    
-  </body>
-
-{% endblock content %}

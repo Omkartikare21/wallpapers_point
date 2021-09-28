@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -27,6 +28,8 @@ class Wallpapers(models.Model):
     slug = models.SlugField(unique=True, db_index=True)
     author = models.CharField(max_length=40)
     tags = models.ManyToManyField(Tag)
+    favourites = models.ManyToManyField(
+        User, related_name="favourite", default=None, blank=True)
 
     def __str__(self):
         return f"{self.title}"
