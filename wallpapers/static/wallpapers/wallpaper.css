@@ -1,20 +1,12 @@
 .main-section-container{
     display: flex;
-    /* background-color: violet; */
 }
 
 .main-wall-content{
-    /* background-color: antiquewhite;     */
     max-width: 70%;
     width: 100%;
     margin: 0 1rem;
     padding-left: 2rem ;
-}
-
-.main-wall-content h4{
-    margin-left: 0.5rem;
-    margin-bottom: 0;
-    font-weight: bold;
 }
 
 .main-wall-content img{
@@ -26,11 +18,40 @@
     margin-top: 0;
 }
 
+.main-wall-line-content{
+    display: flex;
+    flex-direction: row;
+    max-width: 90%;
+    margin-bottom: 0.5rem;
+}
+
+.main-wall-line1{
+    max-width: 70%;
+    width: 100%;
+}
+
 .main-wall-content h6{
     font-weight: bold;
-    margin-left: 1rem;
     font-size: 1.1rem;
     margin-top: -0.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.main-wall-line2{
+    max-width: 30%;
+    margin-top: -0.3rem;
+    margin-left: 0.5rem;
+}
+
+.main-wall-line2 a{
+    color: #494949;
+    text-decoration: none;
+}
+
+.plus{
+    margin-left: 7rem;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .main-wall-tags{
@@ -41,7 +62,6 @@
 .main-wall-tags button{
     margin-left: 1rem;
     margin-bottom: 0.5rem;
-    /* background-color: white; */
     border-radius: 5px;
     padding-bottom: 4px;
 }
@@ -57,28 +77,30 @@
     width: 100%;
     max-width: 73%;
     margin-left: 5rem;
+    margin-top: 0.5rem;
     padding: 0.3rem 0 ;
     background-color: transparent;
     border-radius: 6px;
+    border: 0px solid black;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
 .bttn-link{
     text-decoration: none;
-    /* color:blue; */
+    color: black;
     font-weight: 700;
     font-size: 1.4rem;
 }
-/* 
+
 .bttn:hover{
-    background-color: blue;
+    background: linear-gradient(45deg, rgb(221, 255, 248), rgb(230, 211, 255));
 }
 
 .bttn-link:hover{
-    color: white;
-} */
+    color: black;
+} 
 
 .side-wall-content{
-    /* background-color: wheat; */
     max-width: 30%;
     width: 100%;
 }
@@ -90,7 +112,6 @@
 }
 
 .side-content{
-    /* background-color: yellow; */
     max-width: 65%;
     margin:0 auto;
     height: 100%;

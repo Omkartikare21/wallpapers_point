@@ -1,15 +1,16 @@
 from django.contrib import messages
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
-from wallpapers.forms import CommentForm, CustomerRegisterForm  # ,WallRegisterForm
+from wallpapers.forms import CommentForm, RegisterForm
 from .models import Comments, Wallpapers, Category
 from django.urls import reverse
 from django.views import View
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 def Start(request):
-    index = Wallpapers.objects.all()[:1]
+    index = Wallpapers.objects.all()[7:8]
     indexloop = Wallpapers.objects.all().order_by("-date")[1:5]
     context = {
         "index": index, "indexloop": indexloop
@@ -17,6 +18,7 @@ def Start(request):
     return render(request, "wallpapers/index.html", context)
 
 
+@method_decorator(login_required, name="dispatch")
 class HomePage(View):
     def get(self, request):
         filteredanimal = Wallpapers.objects.filter(
@@ -67,6 +69,7 @@ class HomePage(View):
         return render(request, "wallpapers/homepage.html", context)
 
 
+@method_decorator(login_required, name="dispatch")
 class WallCategory(View):
     def get(self, request):
         wallpapers = Wallpapers.objects.all()
@@ -81,6 +84,7 @@ class WallCategory(View):
         return render(request, "wallpapers/wallCategories.html", context)
 
 
+@method_decorator(login_required, name="dispatch")
 class WallTags(View):
     def get(self, request):
         wallpapers = Wallpapers.objects.all()
@@ -95,27 +99,21 @@ class WallTags(View):
         return render(request, "wallpapers/wallTags.html", context)
 
 
+@method_decorator(login_required, name="dispatch")
 class AllCategories(View):
     def get(self, request):
         categories = Category.objects.all()
-        count = 0
         wallpapers = Wallpapers.objects.all()
         category = request.GET.get('category')
 
         if category == None:
             wallpapers = Wallpapers.objects.all().order_by("-date")[1:]
-
-            # count = Wallpapers.objects.filter(
-            #     category__name__icontains=category).count()
-
         else:
             wallpapers = Wallpapers.objects.filter(
                 category__name=category).order_by("-date")
 
-        print(count)
-
         context = {"categories": categories, "wallpapers": wallpapers,
-                   "comment_form": CommentForm(), "comments": Comments.objects.all().order_by("-id"), "count": count}
+                   "comment_form": CommentForm(), "comments": Comments.objects.all().order_by("-id")}
         return render(request, "wallpapers/all_categories.html", context)
 
     def post(self, request):
@@ -132,23 +130,29 @@ class AllCategories(View):
             return render(request, 'start_page', context)
 
 
+@login_required
 def wallpapers(request, slug):
-    # wallpaper = Wallpapers.objects.get(slug=slug)
+    fav = bool
     allWallpaper = Wallpapers.objects.all()
     swImg = allWallpaper.order_by("-date")[1:2]
     swImgLoop = Wallpapers.objects.all().order_by("-date")[2:5]
     wallpaper = allWallpaper.get(slug=slug)
+
+    if wallpaper.favourites.filter(id=request.user.id).exists():
+        fav = True
 
     context = {
         'wallpaper': wallpaper,
         "swImg": swImg,
         "tags": wallpaper.tags.all(),
         "swImgLoop": swImgLoop,
+        "fav": fav,
     }
 
     return render(request, "wallpapers/wallpaper.html", context)
 
 
+@login_required
 def search_bar(request):
     search = request.GET.get('search')
     result = Wallpapers.objects.filter(title__icontains=search)
@@ -158,40 +162,19 @@ def search_bar(request):
     return render(request, "wallpapers/search_bar.html", context)
 
 
-# class Register(View):
-#     def get(self, request):
-#         form = WallRegisterForm()
-#         context = {
-#             "form": form
-#         }
-#         return render(request, "wallpapers/register.html", context)
-
-#     def post(self, request):
-#         form = WallRegisterForm(request.POST)
-
-#         if form.is_valid():
-#             messages.success(request, "You have sucessfully created account")
-#             form.save()
-
-#         context = {
-#             "form": form,
-#         }
-#         return render(request, "wallpapers/register.html", context)
-
-
-class CustomRegisterView(View):
+class RegisterView(View):
 
     def get(self, request):
-        form = CustomerRegisterForm()
+        form = RegisterForm()
 
         context = {
             "form": form,
         }
 
-        return render(request, "wallpapers/customerRegistration.html", context)
+        return render(request, "wallpapers/Register.html", context)
 
     def post(self, request):
-        form = CustomerRegisterForm(request.POST)
+        form = RegisterForm(request.POST)
 
         if form.is_valid():
             messages.success(
@@ -202,7 +185,7 @@ class CustomRegisterView(View):
             "form": form,
         }
 
-        return render(request, "wallpapers/customerRegistration.html", context)
+        return render(request, "wallpapers/Register.html", context)
 
 
 @login_required
@@ -214,12 +197,11 @@ def wishlist_list(request):
 
 @login_required
 def wishlist_add(request, slug):
-    movie = Wallpapers.objects.get(slug=slug)
+    wallpaper = Wallpapers.objects.get(slug=slug)
 
-    if movie.favourites.filter(id=request.user.id).exists():
-        movie.favourites.remove(request.user)
+    if wallpaper.favourites.filter(id=request.user.id).exists():
+        wallpaper.favourites.remove(request.user)
     else:
-        movie.favourites.add(request.user)
+        wallpaper.favourites.add(request.user)
 
-    # return HttpResponseRedirect(reverse("wishlist"))
     return HttpResponseRedirect(request.META['HTTP_REFERER'])

@@ -5,7 +5,7 @@
         <form action="{% url 'start_page' %}" method="POST">
         {% csrf_token %}
         {% for form_fields in comment_form %}
-            <div class=" smtg {% if form_fields.errors %}invalid{% endif %} "> 
+            <div class=" ffields {% if form_fields.errors %}invalid{% endif %} "> 
                 {{form_fields.label_tag}}
                 {{form_fields}}
                 {{form_fields.errors}}

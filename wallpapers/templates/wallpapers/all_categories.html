@@ -33,7 +33,7 @@
       {% for category in categories %}
 
       <li class="list-group-item">
-        <a style="text-decoration:none; color:black;" href="{% url 'start_page' %}?category={{category.name}}">{{category.name}} ({{count}})</a>
+        <a style="text-decoration:none; color:black;" href="{% url 'start_page' %}?category={{category.name}}">{{category.name}}</a>
       </li>
 
       {% endfor %}
@@ -67,14 +67,6 @@
     </div>
   </div>
 </body>
-
-{% if comment_form.errors %}
-    <div id ="alert">
-        <h2>Saving error</h2>
-        <p>please check the comment</p>
-        <a href="#comment-form">Fix</a>
-    </div>
-{% endif %}
 
 <section id="comm" >
   <ul>

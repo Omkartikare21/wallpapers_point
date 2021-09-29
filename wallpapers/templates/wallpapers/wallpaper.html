@@ -10,8 +10,20 @@
         <h4>{{wallpaper.title}}</h4>
         
         <img src="{{wallpaper.image.url}}">
-        <h6>Artist: {{wallpaper.author}}</h6>
+        <div class="main-wall-line-content">
+            <div class="main-wall-line1">
+                <h6>Artist: {{wallpaper.author}}</h6>
+            </div>
 
+            <div class="main-wall-line2">
+                {% if fav %}
+                    <a href="{% url 'wishlist_add' wallpaper.slug %}"><span class="plus"><i class="fas fa-plus-square"></i>Remove</span></a>
+                {% else %}
+                    <a href="{% url 'wishlist_add' wallpaper.slug %}"><span class="plus"><i class="fas fa-plus-square"></i>Save Later</span></a>
+                {% endif %}
+            </div>
+
+        </div>
             <div class="main-wall-tags">
                 {% for tag in tags %}
                     <button><a href="{% url 'tags' %}?tag={{tag.caption}}">{{ tag.caption }}</a></button>
@@ -25,7 +37,7 @@
             <h4>Top Pick</h4>
             <div class="side-content">
                 {% for swI in swImg %}
-                    <a href="{% url "detail" swI.slug %}"><img src="{{swI.image.url}}" alt=""></a>
+                    <a href="{% url "detail" swI.slug %}"><img src="{{swI.image.url}}"></a>
                 {% endfor %}
             </div>
         </div>
@@ -38,7 +50,7 @@
         <div class="sub-content">
             {% for swI in swImgLoop %}
                 <div class="content">
-                <a href="{% url 'detail' swI.slug %}"><img src="{{swI.image.url}}" alt=""></a></div>
+                <a href="{% url 'detail' swI.slug %}"><img src="{{swI.image.url}}"></a></div>
             {% endfor %}
         </div>
     </div>

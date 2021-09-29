@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
+{% block title %}
+  Login
+{% endblock title %}
+
 {% block content %}
 
-<form action="" method="post">
+<form method="post">
         {% csrf_token %}
         <div class="form-contain">
         {% for fm  in form %}
@@ -11,8 +15,9 @@
           
         {% endfor %}
         </div>
-        <small class="fp-class"><a href="">Forgot Password ?</a></small> <br>
+        {% comment %} <small class="fp-class"><a href="">Forgot Password ?</a></small> {% endcomment %}
         <button class="login-btn"><input class="input-log" type="submit" value="Login"></button>
+        <br>
         <br>
         <div class="account-div"><small>New to Wallpapers point? <a href="/register">Create an Account</a> </small></div>
 

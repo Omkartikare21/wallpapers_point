@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
 from django.contrib.auth.models import User
-from django.db.models import fields
 from .models import Comments
 
 
@@ -16,31 +15,14 @@ class CommentForm(forms.ModelForm):
         }
 
 
-# class WallRegisterForm(UserCreationForm):
-#     username = forms.TextInput(attrs={'class': 'form-control'})
-#     email = forms.CharField(required=True, widget=forms.EmailInput(
-#         attrs={'class': 'form-control'}))
-#     password1 = forms.CharField(
-#         label="Password", widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-#     password2 = forms.CharField(label="Confirm Password",
-#                                 widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-
-#     class Meta:
-#         model = User
-#         fields = ["username", "email", "password1", "password2"]
-#         labels = {
-#             "username": "Name",
-#             "email": "Email",
-#         }
-
-class CustomerRegisterForm(UserCreationForm):
+class RegisterForm(UserCreationForm):
 
     username = forms.TextInput(attrs={'class': 'form-control'})
     email = forms.CharField(required=True, widget=forms.EmailInput(
         attrs={'class': 'form-control'}))
     # passing bootstrap class name to attrs to design in custom way.
     password1 = forms.CharField(
-        label="Password", widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+        label="Password", widget=forms.PasswordInput(attrs={'class': 'form-control '}))
     password2 = forms.CharField(label="Confirm Password (again)",
                                 widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 

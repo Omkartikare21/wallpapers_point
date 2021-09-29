@@ -1,7 +1,18 @@
 {% load static %}
 
+<style>
+  .header-bttn{
+    font-size:22px;
+    color:gray;
+  }
+  
+  .header-bttn:hover{
+    color:#494949;
+  }
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand fw-bold " style="font-size:26px; color:black">Wallpapers point</a>
+    <a class="navbar-brand fw-bold"><img src="{% static 'logo.png' %}" width="64px" height="64px"></a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -10,26 +21,44 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
     <ul class="navbar-nav mr-auto">
+    {% if request.user.is_authenticated %}
 
       <li class="nav-item active">
         <a class="nav-link fw-bold" style="font-size:24px" href="{% url 'home' %}">Home</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link fw-bold" style="font-size:24px" href="mailto:omkartikare55@gmail.com">Mail Us </a>
-      </li>
-
-      <li class="nav-item">
         <a class="nav-link fw-bold" style="font-size:24px" href="{% url 'start_page' %}">All Categories </a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link fw-bold" style="font-size:24px" href="mailto:omkartikare55@gmail.com">Contact </a>
+      </li>
+
+    {% else %}
+      <li class="nav-item">
+        <a class="nav-link fw-bold" style="font-size:22px; margin-left:50rem" href="{% url 'login' %}">Log In</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link fw-bold" style="font-size:22px" href="{% url 'register' %}">Sign Up</a>
+      </li>
+
+    {% endif %}
+
     </ul>
-    <form class="form-inline my-2 my-lg-0" style="margin-left:450px; display:flex;" method='get' action='/search'>
+    {% if request.user.is_authenticated %}
+      <a class="nav-link fw-bold header-bttn"  href="{% url 'wishlist' %}">My Collections</a>
+
+    <form class="form-inline my-2 my-lg-0" style="margin-left:25%; display:flex;" method='get' action='/search'>
 
       <input class="form-control mr-sm-2" name="search" id="search" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" style="margin-left:8px" type="submit">Search</button>
       
     </form>
+      <a class="nav-link fw-bold header-bttn"  href="{% url 'index' %}">Log Out</a>
+
+    {% endif %}
 
   </div>
 </nav>

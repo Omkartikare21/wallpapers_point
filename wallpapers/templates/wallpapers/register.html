@@ -1,42 +1,44 @@
 {% extends 'base.html' %}
 
-{% block title %}
-    Register
-{% endblock title %}
+    {% block title %}
+        Registration
+    {% endblock title %}
 
 {% block content %}
-<section>
-    <h3>Create an account</h3>
-    <form action="" method="post">
-        {% csrf_token %}
+<form method="post">
 
-        {% if messages %}
-        
-            {% for msg in messages %}
-                <p {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</p>
-            {% endfor %}
+                    {% if messages %}
+                        
+                        {% for message in messages %}
+                            <p {% if message.tags %} class="{{message.tags}}"{% endif %}>{{message}}</p>
+                        {% endfor %}
 
-        {% endif %}
+                    {% endif %}
 
-        {% for form_field in form %}
-            <div>
-                {{form_field.label_tag}}
-                {{form_field}}
-            </div>
-        {% endfor %}
-        
-        <input type="submit" value="Submit">
+                    {% csrf_token %}
 
-        
-                {% if form.non_field_errors %}
+                    {% for fm in form %}
+
+                        <div class="cR-form-content">
+                            <div class="cR-form-title">{{fm.label_tag}}</div> {{fm}} <small class="">{{fm.errors | striptags}}</small>
+                        </div>
+
+                    {% endfor %}
+                    <br>
+                    <input type="submit" value="Submit" class="cR-form-btn">
+                    <br>
+
+                    <div class="cR-form-EU">
+                    <br>
+                        <small>Existing User ?<a href="/accounts/login/" class="cR-form-LN">Login Now</a></small>
+                    </div>
+
+                    {% if form.non_field_errors %}
 
                         {% for error in form.non_field_errors  %}
                             <p class="">{{error}}</p>
                         {% endfor %}
 
-                {% endif %}
-                
-    </form>
-</section>
-        
+                    {% endif %}
+                </form>
 {% endblock content %}
