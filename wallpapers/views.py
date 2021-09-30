@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from wallpapers.forms import CommentForm, RegisterForm
 from .models import Comments, Wallpapers, Category
 from django.urls import reverse
@@ -178,13 +178,12 @@ class RegisterView(View):
 
         if form.is_valid():
             messages.success(
-                request, "Congratulations You are Account Registered Successfully")
+                request, "Congratulations!!! Your Account has been Registered Successfully")
             form.save()
 
         context = {
             "form": form,
         }
-
         return render(request, "wallpapers/Register.html", context)
 
 

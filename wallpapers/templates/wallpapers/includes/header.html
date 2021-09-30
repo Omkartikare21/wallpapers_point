@@ -37,7 +37,7 @@
 
     {% else %}
       <li class="nav-item">
-        <a class="nav-link fw-bold" style="font-size:22px; margin-left:50rem" href="{% url 'login' %}">Log In</a>
+        <a class="nav-link fw-bold" style="font-size:22px; margin-left:65rem" href="{% url 'login' %}">Log In</a>
       </li>
 
       <li class="nav-item">
@@ -47,16 +47,17 @@
     {% endif %}
 
     </ul>
+
     {% if request.user.is_authenticated %}
       <a class="nav-link fw-bold header-bttn"  href="{% url 'wishlist' %}">My Collections</a>
 
-    <form class="form-inline my-2 my-lg-0" style="margin-left:25%; display:flex;" method='get' action='/search'>
+    <form class="form-inline my-2 my-lg-0" style="margin-left:18rem; display:flex;" method='get' action='/search'>
 
       <input class="form-control mr-sm-2" name="search" id="search" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" style="margin-left:8px" type="submit">Search</button>
       
     </form>
-      <a class="nav-link fw-bold header-bttn"  href="{% url 'index' %}">Log Out</a>
+      <a class="nav-link fw-bold header-bttn"  href="{% url 'logout' %}">Log Out</a>
 
     {% endif %}
 

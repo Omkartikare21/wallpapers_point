@@ -17,13 +17,15 @@ class CommentForm(forms.ModelForm):
 
 class RegisterForm(UserCreationForm):
 
-    username = forms.TextInput(attrs={'class': 'form-control'})
+    username = UsernameField(label=("Name"), widget=forms.TextInput(
+        attrs={'class': 'form-control'}))
+
     email = forms.CharField(required=True, widget=forms.EmailInput(
         attrs={'class': 'form-control'}))
     # passing bootstrap class name to attrs to design in custom way.
     password1 = forms.CharField(
         label="Password", widget=forms.PasswordInput(attrs={'class': 'form-control '}))
-    password2 = forms.CharField(label="Confirm Password (again)",
+    password2 = forms.CharField(label="Confirm Password",
                                 widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     class Meta:
@@ -37,7 +39,7 @@ class RegisterForm(UserCreationForm):
 
 class LoginForm(AuthenticationForm):
 
-    username = UsernameField(widget=forms.TextInput(
+    username = UsernameField(label=("User name"), widget=forms.TextInput(
         attrs={'autofocus': True, 'class': 'form-control'}))
     password = forms.CharField(label=("Password"), widget=forms.PasswordInput(
         attrs={'autocomplete': 'current-password', 'class': 'form-control'}))

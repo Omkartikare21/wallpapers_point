@@ -5,38 +5,42 @@
     {% endblock title %}
 
 {% block content %}
-<form method="post">
-
-                    {% if messages %}
+    <div class="msgs">
                         
-                        {% for message in messages %}
-                            <p {% if message.tags %} class="{{message.tags}}"{% endif %}>{{message}}</p>
-                        {% endfor %}
+        {% if messages %}
+            {% for message in messages %}
+                <p {% if message.tags %} class="{{message.tags}}"{% endif %}>{{message}}</p>
+            {% endfor %}
 
-                    {% endif %}
-
-                    {% csrf_token %}
+        {% endif %}
+    </div>
+    <form method="post" class="main-reg-form">
+                    
+        {% csrf_token %}
 
                     {% for fm in form %}
 
-                        <div class="cR-form-content">
-                            <div class="cR-form-title">{{fm.label_tag}}</div> {{fm}} <small class="">{{fm.errors | striptags}}</small>
+                        <div class="reg-form">
+                            <h5>{{fm.label_tag}}</h5> 
+                            
+                            {{fm}}
+
                         </div>
 
                     {% endfor %}
-                    <br>
-                    <input type="submit" value="Submit" class="cR-form-btn">
+                    <br class="reg-sub-btn">
+                    <input type="submit" value="Submit" class="reg-sub-btn">
                     <br>
 
-                    <div class="cR-form-EU">
+                    <div class="reg-form-EU">
                     <br>
-                        <small>Existing User ?<a href="/accounts/login/" class="cR-form-LN">Login Now</a></small>
+                        <small>Existing User? <a href="/accounts/login/" class="cR-form-LN">Login</a></small>
                     </div>
 
                     {% if form.non_field_errors %}
 
                         {% for error in form.non_field_errors  %}
-                            <p class="">{{error}}</p>
+                            <p class="text">{{error}}</p>
                         {% endfor %}
 
                     {% endif %}

@@ -1,0 +1,55 @@
+.main-reg-form{
+    max-width: 40%;
+    margin: 1.5rem auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.30);
+}
+
+.text{
+    margin-left: 1.5rem;
+    list-style: none;
+    color: #ff8e8e;
+}
+
+.msgs{
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    margin: 1rem auto;
+    max-width: 70%;
+    background: linear-gradient(45deg, rgb(221, 255, 248), rgb(230, 211, 255));
+}
+
+.reg-form {
+    padding: 1rem;
+    margin: 0 auto;
+}
+
+.reg-form label{
+    color:#5e5e5e;
+    margin-left: 0.15rem;
+}
+
+.reg-form input{
+    width: 100%;
+    border-radius: 20px;
+}
+
+.reg-form-EU{
+    text-align: center;
+    font-size: 20px;
+    margin-top: -1rem;
+}
+
+.reg-sub-btn{
+    margin-left: 12.3rem;
+    background-color: transparent;
+    border-radius: 20px;
+    padding: 0.15rem 2rem;
+    border: 1px solid gray; 
+    font-weight: bold;
+    letter-spacing: 5px;
+}
+
+.reg-sub-btn:hover{
+    background: linear-gradient(45deg, rgb(221, 255, 248), rgb(230, 211, 255));
+}

@@ -17,7 +17,7 @@ urlpatterns = [
     path("register/", views.RegisterView.as_view(), name="register"),
     path("accounts/login/", auth_views.LoginView.as_view(template_name="wallpapers/login.html",
          authentication_form=LoginForm), name="login"),
-    path("logout/", auth_views.LogoutView.as_view(next_page='login'), name="logout"),
+    path("logout/", auth_views.LogoutView.as_view(next_page='index'), name="logout"),
 
     path("wishlist/", views.wishlist_list, name="wishlist"),
     path("wishlist/<slug:slug>", views.wishlist_add, name="wishlist_add"),
