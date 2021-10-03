@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, render
 from wallpapers.forms import CommentForm, RegisterForm
 from .models import Comments, Wallpapers, Category
 from django.urls import reverse
@@ -137,6 +137,12 @@ def wallpapers(request, slug):
     swImg = allWallpaper.order_by("-date")[1:2]
     swImgLoop = Wallpapers.objects.all().order_by("-date")[2:5]
     wallpaper = allWallpaper.get(slug=slug)
+    like = get_object_or_404(Wallpapers, slug=slug)
+    total_likes = like.total_likes()
+
+    liked = False
+    if like.likes.filter(id=request.user.id).exists():
+        liked = True
 
     if wallpaper.favourites.filter(id=request.user.id).exists():
         fav = True
@@ -147,9 +153,31 @@ def wallpapers(request, slug):
         "tags": wallpaper.tags.all(),
         "swImgLoop": swImgLoop,
         "fav": fav,
+        "total_likes": total_likes,
+        "liked": liked
     }
 
     return render(request, "wallpapers/wallpaper.html", context)
+
+
+@login_required
+def Like_list(request):
+    list = Wallpapers.objects.filter(likes=request.user)
+
+    return render(request, "wallpapers/LikeList.html", {"list": list})
+
+
+@login_required
+def Likelist_add(request, slug):
+    wallpaper = Wallpapers.objects.get(slug=slug)
+
+    if wallpaper.likes.filter(id=request.user.id).exists():
+        wallpaper.likes.remove(request.user)
+    else:
+        wallpaper.likes.add(request.user)
+
+    return HttpResponseRedirect(reverse('detail', args=[slug]))
+    # return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
 @login_required

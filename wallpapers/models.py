@@ -30,6 +30,10 @@ class Wallpapers(models.Model):
     tags = models.ManyToManyField(Tag)
     favourites = models.ManyToManyField(
         User, related_name="favourite", default=None, blank=True)
+    likes = models.ManyToManyField(User, default=None)
+
+    def total_likes(self):
+        return self.likes.count()
 
     def __str__(self):
         return f"{self.title}"

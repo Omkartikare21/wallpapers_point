@@ -21,4 +21,7 @@ urlpatterns = [
 
     path("wishlist/", views.wishlist_list, name="wishlist"),
     path("wishlist/<slug:slug>", views.wishlist_add, name="wishlist_add"),
+
+    path("likes/", views.Like_list, name="likelist"),
+    path("likes/<slug:slug>", views.Likelist_add, name="likelist_add")
 ]

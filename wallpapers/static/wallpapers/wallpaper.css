@@ -46,6 +46,20 @@
 .main-wall-line2 a{
     color: #494949;
     text-decoration: none;
+    margin-left: -5rem;
+    margin: 0 auto;
+}
+
+.like_btn a{
+    position: absolute;
+    right: 50%;
+    font-weight: bold;
+    margin-right: -2rem;
+    margin-top: 0.2rem;
+}
+
+.main-wall-line2 form{
+    margin: 0;
 }
 
 .plus{
@@ -133,11 +147,11 @@
     height: 20rem;
     width: 100%;
     margin: 3rem;
-    margin:3rem auto;
+    margin:5rem auto;
 }
 
 .sub-main-content h3{
-    font-weight: 700;
+    font-weight: 700;   
     margin-left: -1.4rem;
 }
 

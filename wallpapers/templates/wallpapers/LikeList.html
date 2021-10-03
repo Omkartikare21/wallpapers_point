@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Wishlist
+ Liked Wallpapers
 {% endblock title %}
 
 {% block content %}
 
-<h3 style="text-align:center; font-weight:bold; font-style:italic">My Wish List</h3>
+<h3 style="text-align:center; font-weight:bold; font-style:italic">My Liked wallpapers</h3>
 <hr>
 <div class="col-md-9" style="margin:0 auto">
     <div class="row">
 
-      {% for wallpaper in lists %}
+      {% for wallpaper in list %}
         <div class="col-md-4">
 
           <div class="card my-2">
@@ -32,7 +32,7 @@
         </div>
 
         {% empty %}
-        <h3>You Have Not Saved Any Wallpaper...</h3>
+        <h3>Liked Wallpaper Will Be Saved Here...</h3>
   
       {% endfor %}
     </div>

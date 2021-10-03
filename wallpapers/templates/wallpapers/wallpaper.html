@@ -16,6 +16,16 @@
             </div>
 
             <div class="main-wall-line2">
+                <div class="like_btn">
+                    {% if liked %}
+                        <a href="{% url 'likelist_add' wallpaper.slug %}" class="like_btn"><i class="fas fa-thumbs-up"></i> Liked </a>
+                    {% else %}
+                        <a href="{% url 'likelist_add' wallpaper.slug %}"><span><i class="far fa-thumbs-up"></i>Like</span></a>
+                    {% endif %}
+                </div>
+
+              
+
                 {% if fav %}
                     <a href="{% url 'wishlist_add' wallpaper.slug %}"><span class="plus"><i class="fas fa-plus-square"></i>Remove</span></a>
                 {% else %}

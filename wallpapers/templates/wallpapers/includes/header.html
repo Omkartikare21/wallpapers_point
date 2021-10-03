@@ -28,7 +28,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link fw-bold" style="font-size:24px" href="{% url 'start_page' %}">All Categories </a>
+        <a class="nav-link fw-bold" style="font-size:24px" href="{% url 'start_page' %}">Categories </a>
       </li>
 
       <li class="nav-item">
@@ -49,15 +49,33 @@
     </ul>
 
     {% if request.user.is_authenticated %}
-      <a class="nav-link fw-bold header-bttn"  href="{% url 'wishlist' %}">My Collections</a>
 
-    <form class="form-inline my-2 my-lg-0" style="margin-left:18rem; display:flex;" method='get' action='/search'>
+    <form class="form-inline my-2 my-lg-0" style="margin-left:29rem; display:flex;" method='get' action='/search'>
 
       <input class="form-control mr-sm-2" name="search" id="search" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" style="margin-left:8px" type="submit">Search</button>
       
     </form>
-      <a class="nav-link fw-bold header-bttn"  href="{% url 'logout' %}">Log Out</a>
+      
+
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if request.user.is_authenticated %}
+           <li class="nav-item dropdown mx-2">
+              <a class="nav-link dropdown-toggle text-dark   fw-bold" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Welcome, {{request.user.username | capfirst}}
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                <li><a class="dropdown-item fw-bold" href="{% url 'wishlist' %}">Collections</a></li>
+                <li><a class="dropdown-item fw-bold" href="{% url 'likelist' %}">Likes</a></li>
+                <li><a class="dropdown-item fw-bold" href="{% url 'logout' %}">Logout</a></li>
+              </ul>
+            </li>
+            
+          
+            {% endif %}
+          </ul>
+
 
     {% endif %}
 
