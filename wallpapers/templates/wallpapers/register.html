@@ -18,31 +18,31 @@
                     
         {% csrf_token %}
 
-                    {% for fm in form %}
+            {% for fm in form %}
 
-                        <div class="reg-form">
-                            <h5>{{fm.label_tag}}</h5> 
+                <div class="reg-form">
+                    <h5>{{fm.label_tag}}</h5> 
                             
-                            {{fm}}
+                    {{fm}}
 
-                        </div>
+                </div>
 
-                    {% endfor %}
+            {% endfor %}
                     <br class="reg-sub-btn">
-                    <input type="submit" value="Submit" class="reg-sub-btn">
+                        <input type="submit" value="Submit" class="reg-sub-btn">
                     <br>
 
                     <div class="reg-form-EU">
-                    <br>
+                        <br>
                         <small>Existing User? <a href="/accounts/login/" class="cR-form-LN">Login</a></small>
                     </div>
 
                     {% if form.non_field_errors %}
 
                         {% for error in form.non_field_errors  %}
-                            <p class="text">{{error}}</p>
+                            <p class="error_msg">{{error}}</p>
                         {% endfor %}
 
                     {% endif %}
-                </form>
+    </form>
 {% endblock content %}

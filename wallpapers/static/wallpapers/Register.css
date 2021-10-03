@@ -5,10 +5,13 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.30);
 }
 
-.text{
-    margin-left: 1.5rem;
+.error_msg{
+    text-align: center;
+    margin-top: 0.5rem;
+    font-weight: bold;
+    font-size: 18px;
+    color: #5e5e5e;
     list-style: none;
-    color: #ff8e8e;
 }
 
 .msgs{
